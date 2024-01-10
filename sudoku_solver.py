@@ -64,7 +64,7 @@ def sort(x, y):
     
 
     cube = sum(cube, [])
-    return row, column
+    return row, column, cube
 
 
 print(sort(2, 2))
