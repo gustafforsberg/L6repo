@@ -64,18 +64,29 @@ def sort(x, y):
     
 
     cube = sum(cube, [])
-    return row
+    return row, column
 
 
-def find_missing_numbers(num):
+def find_missing_numbers(list):
    """Tar emot en lista och retunerar en lista med tal som saknas"""
    missing_numbers_return = []
-   for i in range(1,10):
-      k = num.count(i)
+   missing_numbers_col_return = []
 
-      if k == 0:
+   rad = list[0]
+   col = list[1]
+   print(rad)
+   print(col)
+
+
+   for i in range(1,10):
+      k = rad.count(i)
+      j = col.count(i)
+
+      if k == 0 or j == 0:
          #print(i)
          missing_numbers_return.append(i)
+
+
       elif k > 1:
          print('FAIL')
       
