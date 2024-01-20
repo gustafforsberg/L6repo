@@ -71,7 +71,6 @@ def sort(x, y):
 def find_missing_numbers(list):
    """Tar emot tre listor och retunerar en lista med tal som saknas"""
    missing_numbers_return = []
-   missing_numbers_col_return = []
 
    rad = list[0]
    col = list[1]
@@ -83,7 +82,6 @@ def find_missing_numbers(list):
       l = cube.count(i)
 
       if (k == 0) & (j == 0) & (l == 0):
-         #print(i)
          missing_numbers_return.append(i)
 
 
@@ -105,11 +103,12 @@ def heal(x,y,num):
 
 
 
-def print_solves_sudoku(grid):
-    f = open('solved_sudoku.csv', mode='w')
+def print_solved_sudoku(grid):
+    """Skriver ut 2D-listan som en sträng med rätt formaterning och skriver den till en fil """
+    f = open('solved_sudoku.csv', mode = 'w')
     for outer_element in grid:
-        print(', '.join(str(e) for e in outer_element))
-        f.writelines(', '.join(str(e) for e in outer_element) + '\n')
+        print(', '.join(str(element) for element in outer_element))
+        f.writelines(', '.join(str(element) for element in outer_element) + '\n')
     f.close()
     return
 
@@ -131,7 +130,7 @@ while True:
    
 
 
-print_solves_sudoku(grid)
+print_solved_sudoku(grid)
             
 
 
