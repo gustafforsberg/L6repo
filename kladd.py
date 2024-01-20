@@ -2,16 +2,15 @@
 grid = [[0, 5, 9, 7, 3, 2, 8, 6, 1],
         [6, 0, 1, 0, 0, 0, 0, 0, 3],
         [0, 8, 0, 6, 9, 1, 0, 7, 5],
-        [0, 0, 5, 2, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 9, 8, 1, 0, 0],
-        [0, 4, 0, 0, 0, 3, 0, 0, 0],
-        [0, 0, 0, 3, 6, 0, 0, 7, 2],
-        [0, 7, 0, 0, 0, 0, 0, 0, 3],
-        [9, 0, 3, 0, 0, 0, 6, 0, 4]]
+        [0, 9, 7, 0, 2, 8, 5, 3, 0],
+        [0, 6, 0, 1, 7, 0, 0, 0, 4],
+        [0, 2, 4, 0, 5, 6, 7, 1, 0],
+        [2, 0, 8, 9, 0, 4, 6, 0, 7],
+        [0, 0, 0, 5, 8, 3, 0, 9, 0],
+        [0, 0, 0, 0, 6, 7, 3, 4, 8]]
 
 
-x = 2
-y = 0
+
 
 def sort(x, y):
     column = []
@@ -64,7 +63,7 @@ def sort(x, y):
     
 
     cube = sum(cube, [])
-    return row, column
+    return row, column, cube
 
 
 def find_missing_numbers(list):
@@ -74,15 +73,17 @@ def find_missing_numbers(list):
 
    rad = list[0]
    col = list[1]
-   print(rad)
-   print(col)
+   cube = list[2]
+   #print(rad)
+   #print(col)
 
 
    for i in range(1,10):
       k = rad.count(i)
       j = col.count(i)
+      l = cube.count(i)
 
-      if k == 0 or j == 0:
+      if (k == 0) & (j == 0) & (l == 0):
          #print(i)
          missing_numbers_return.append(i)
 
@@ -95,16 +96,41 @@ def find_missing_numbers(list):
 
 
 
+def heal(x,y,num):
+    if len(num) < 2:
+      grid[y][x] = num[0]
 
-for i in range(0, 9):
-    y = i
-    #print("y = ", y)
-    for i in range(0 ,9):
-        x = i
-        #print("x =", x)
-        if grid[y][x] == 0:
-            print("empty")
-            print(find_missing_numbers(sort(x,y)))
+    return
 
-        else:
-         print(grid[y][x])
+# if grid[y][x] == 0:
+#     print("empty")
+#     missing_num = find_missing_numbers(sort(x,y))
+#     missing_num = missing_num[0]
+#     print(missing_num)
+#     heal(x, y ,missing_num)
+#     print(grid)
+
+
+
+i = 0
+j = 0
+
+
+while True:
+   for i in range(0, 9):
+      y = i
+      #print("y = ", y)
+      for j in range(0 ,9):
+         x = j
+         #print("x =", x)
+         if grid[y][x] == 0:
+               print("empty")
+               missing_num =find_missing_numbers(sort(x,y))
+               #missing_num = missing_num[0]
+               print(missing_num)
+               heal(x, y ,missing_num)
+
+      
+   print(grid)
+            
+
