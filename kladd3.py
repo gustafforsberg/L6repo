@@ -11,5 +11,10 @@ grid = [[0, 5, 9, 7, 3, 2, 8, 6, 1],
 
 
 
-print(sum(sum(grid,[]))) 
+
+def sudoku_print(grid):
+
+    for outer_element in grid:
+        print(outer_element)
+
 
