@@ -112,11 +112,14 @@ def heal(x,y,num):
 
 
 
-i = 0
-j = 0
+
 
 
 while True:
+
+   if sum(sum(grid,[])) == 405:
+       break
+
    for i in range(0, 9):
       y = i
       #print("y = ", y)
@@ -129,8 +132,11 @@ while True:
                #missing_num = missing_num[0]
                print(missing_num)
                heal(x, y ,missing_num)
+   
+
+
 
       
-   print(grid)
+print(grid)
             
 

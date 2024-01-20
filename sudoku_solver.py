@@ -67,7 +67,81 @@ def sort(x, y):
     return row, column, cube
 
 
-print(sort(2, 2))
+def find_missing_numbers(list):
+   """Tar emot en lista och retunerar en lista med tal som saknas"""
+   missing_numbers_return = []
+   missing_numbers_col_return = []
+
+   rad = list[0]
+   col = list[1]
+   cube = list[2]
+   #print(rad)
+   #print(col)
+
+
+   for i in range(1,10):
+      k = rad.count(i)
+      j = col.count(i)
+      l = cube.count(i)
+
+      if (k == 0) & (j == 0) & (l == 0):
+         #print(i)
+         missing_numbers_return.append(i)
+
+
+      elif k > 1:
+         print('FAIL')
+      
+   return missing_numbers_return
+
+
+
+
+def heal(x,y,num):
+    if len(num) < 2:
+      grid[y][x] = num[0]
+
+    return
+
+# if grid[y][x] == 0:
+#     print("empty")
+#     missing_num = find_missing_numbers(sort(x,y))
+#     missing_num = missing_num[0]
+#     print(missing_num)
+#     heal(x, y ,missing_num)
+#     print(grid)
+
+
+
+
+
+
+while True:
+
+   if sum(sum(grid,[])) == 405:
+       break
+
+   for i in range(0, 9):
+      y = i
+      #print("y = ", y)
+      for j in range(0 ,9):
+         x = j
+         #print("x =", x)
+         if grid[y][x] == 0:
+               print("empty")
+               missing_num =find_missing_numbers(sort(x,y))
+               #missing_num = missing_num[0]
+               print(missing_num)
+               heal(x, y ,missing_num)
+   
+
+
+
+      
+print(grid)
+            
+
+
 
 
 
