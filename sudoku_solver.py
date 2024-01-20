@@ -105,10 +105,13 @@ def heal(x,y,num):
 
 
 
-def sudoku_print(grid):
+def print_solves_sudoku(grid):
+    f = open('solved_sudoku.csv', mode='w')
     for outer_element in grid:
-        print(outer_element)
-    return    
+        print(', '.join(str(e) for e in outer_element))
+        f.writelines(', '.join(str(e) for e in outer_element) + '\n')
+    f.close()
+    return
 
 
 while True:
@@ -118,7 +121,6 @@ while True:
    
    for i in range(0, 9):
       y = i
-   
       for j in range(0 ,9):
          x = j
          if grid[y][x] == 0:
@@ -129,8 +131,7 @@ while True:
    
 
 
-
-sudoku_print(grid)
+print_solves_sudoku(grid)
             
 
 

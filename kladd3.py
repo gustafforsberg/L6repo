@@ -11,10 +11,23 @@ grid = [[0, 5, 9, 7, 3, 2, 8, 6, 1],
 
 
 
-
-def sudoku_print(grid):
+def print_solves_sudoku(grid):
+    f = open('solved_sudoku.csv', mode='w')
 
     for outer_element in grid:
-        print(outer_element)
+        print(', '.join(str(e) for e in outer_element))
+
+        f.writelines(', '.join(str(e) for e in outer_element) + '\n')
 
 
+    f.close()
+    return
+
+
+
+# f = open('solved_sudoku.csv', mode='w')
+
+# for outer_element in grid:
+#     f.writelines(str(outer_element) + '\n')
+
+# f.close
