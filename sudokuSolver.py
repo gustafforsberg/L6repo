@@ -1,17 +1,21 @@
 #!/usr/bin/python3
 
+########################################
+# SudokuSolver.py 
+# Gustaf Forsberg
+# Ei22
+########################################
 
-#SudokuSolver.py 
-#Gustaf Forsberg
-#Ei22
+
 
 import sys
 
-#****Funktionsdeklerationer****
+####### Funktionsdeklerationer #######
 
 def sudoku_input():
-    """Läser in en valfri .csv-fil  som ett command-line-argument, skapar en 2D-lista med "intar" och skriver ut den formaterad"""
-    f = open(str(sys.argv[1]), mode = 'r')
+    """Läser in en valfri .csv-fil  som ett command-line-argument, skapar en 2D-lista med "intar" och skriver ut den formaterad i terminalen"""
+    csv_file = str(sys.argv[1])
+    f = open(csv_file, mode = 'r')
     sudoku_string_list = []
 
     for line in f:
@@ -21,13 +25,13 @@ def sudoku_input():
         sudoku_grid.append([int(i) for i in outer_element])
 
     f.close()
-    print('Unsolved sudoku:\n')
+    print(f'Unsolved sudoku from file: {csv_file}')
     for outer_element in sudoku_grid:
         print(', '.join(str(element) for element in outer_element))
     return 
 
 
-def sort(x, y):
+def row_column_cube_sort(x, y):
     """Tar emot kordinater till en position i sudokut och retunerar en 2D-lista med tre listor 'rad', 'column' och 'cube' beroende på position"""
     column = []
     row = []
@@ -97,7 +101,7 @@ def find_missing_numbers(lists):
    return missing_numbers_return
 
 
-def heal(x,y,missing_numbers_list):
+def heal(x, y, missing_numbers_list):
     """Tar emot kordinater och en lista med saknade tal 
     om det bara finns ett tal i listan så skrivs talet till sudokut på kordinaternas position. 
     Finns det fler möjliga tal så görs ingenting"""
@@ -108,17 +112,18 @@ def heal(x,y,missing_numbers_list):
 
 
 def print_solved_sudoku(sudoku_grid):
-    """Skriver ut 2D-listan som en sträng med rätt formaterning och skriver den till en fil """
-    print('\nSolved sudoku:\n')
-    f = open('solved_sudoku.csv', mode = 'w')
+    """Skriver ut 2D-listan som en sträng med rätt formaterning och skriver den till en filen 'solved.csv' """
+    print('\nSolved sudoku:')
+    f = open('solved.csv', mode = 'w')
     for outer_element in sudoku_grid:
         print(', '.join(str(element) for element in outer_element))
         f.writelines(', '.join(str(element) for element in outer_element) + '\n')
     f.close()
+    print('Written to file: solved.csv ')
     return
 
 
-# ****program start****
+####### program start #######
 
 #skapar en lista för sudokut
 sudoku_grid = []
@@ -127,20 +132,23 @@ sudoku_grid = []
 sudoku_input()
 
 
+# I en while-loop körs en nästlad for-loop som räknar upp kordinaterna för x och y position i sudokut, från väsnster till höger, uppifrån och ner. 
+# Varje position testats, om det finns en "0" i positionen listats möjliga kandidater för positionen
+# Finns det bara en kandidat så skrivs nollan över med den ny siffran. 
+# While-loopen körs så länge summan av sudokut inte är 405.
 while True:
 
-   if sum(sum(sudoku_grid,[])) == 405:
+   if sum(sum(sudoku_grid,[])) != 405:
        break
+   else:
+    for y in range(0, 9):
+        for x in range(0 ,9):
+            if sudoku_grid[y][x] == 0:
+                missing_num = find_missing_numbers(row_column_cube_sort(x, y))
+                heal(x, y ,missing_num)
    
-   for i in range(0, 9):
-      y = i
-      for j in range(0 ,9):
-         x = j
-         if sudoku_grid[y][x] == 0:
-               missing_num = find_missing_numbers(sort(x,y))
-               heal(x, y ,missing_num)
-   
-
+       
+# När sudokut är löst skrivs det ut i terminalen, samt skapar en .csv-fil med det lösta sudokut.
 print_solved_sudoku(sudoku_grid)
             
 
