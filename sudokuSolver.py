@@ -134,18 +134,17 @@ sudoku_input()
 
 # I en while-loop körs en nästlad for-loop som räknar upp kordinaterna för x och y position i sudokut, från väsnster till höger, uppifrån och ner. 
 # Varje position testats, om det finns en "0" i positionen listats möjliga kandidater för positionen
-# Finns det bara en kandidat så skrivs nollan över med den ny siffran. 
+# Finns det bara en kandidat så skrivs nollan över med den nya siffran. 
 # While-loopen körs så länge summan av sudokut inte är 405.
 while True:
 
-   if sum(sum(sudoku_grid,[])) != 405:
+   if sum(sum(sudoku_grid,[])) == 405:
        break
    else:
     for y in range(0, 9):
         for x in range(0 ,9):
             if sudoku_grid[y][x] == 0:
-                missing_num = find_missing_numbers(row_column_cube_sort(x, y))
-                heal(x, y ,missing_num)
+                heal(x, y ,find_missing_numbers(row_column_cube_sort(x, y)))
    
        
 # När sudokut är löst skrivs det ut i terminalen, samt skapar en .csv-fil med det lösta sudokut.
