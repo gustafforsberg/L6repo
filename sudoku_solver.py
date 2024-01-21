@@ -24,7 +24,7 @@ def sort(x, y):
 
     row = grid[y]
 
-    if (x <= 2) & (y <=2):          #cube 1
+    if (x <= 2) & (y <= 2):          #cube 1
 
      for i in range(3):
         cube.append(grid[i][0:3])
@@ -62,14 +62,12 @@ def sort(x, y):
             cube.append(grid[i][6:9])
 
 
-    
-
     cube = sum(cube, [])
     return row, column, cube
 
 
 def find_missing_numbers(list):
-   """Tar emot tre listor och retunerar en lista med tal som saknas"""
+   """Tar emot en 2D-lista med tre listor som delas upp och retunerar en lista med tal som saknas"""
    missing_numbers_return = []
 
    rad = list[0]
@@ -85,8 +83,8 @@ def find_missing_numbers(list):
          missing_numbers_return.append(i)
 
 
-      elif k > 1:
-         print('FAIL')
+     # else:
+      #   print('FAIL')
       
    return missing_numbers_return
 
@@ -96,7 +94,7 @@ def find_missing_numbers(list):
 def heal(x,y,num):
     """Tar emot kordinater och en lista med saknade tal 
     om det bara finns ett tal i listan så skrivs talet till sudokut på kordinaternas position"""
-    if len(num) < 2:
+    if len(num) == 1:
       grid[y][x] = num[0]
 
     return
@@ -128,6 +126,7 @@ while True:
                print(missing_num)#ta bort
                heal(x, y ,missing_num)
    
+
 
 
 print_solved_sudoku(grid)
