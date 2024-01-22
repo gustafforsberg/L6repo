@@ -6,8 +6,6 @@
 # Ei22
 ########################################
 
-
-
 import sys
 
 ####### Funktionsdeklerationer #######
@@ -85,8 +83,8 @@ def row_column_cube_sort(x, y):
 
 
 def find_missing_numbers(lists):
-   """Tar emot en 2D-lista med tre listor som delas upp, 
-   kollar om talen 1 -9 finns i listorna och retunerar en lista med tal som saknas"""
+   """Tar emot en 2D-lista med tre listor (row, column, cube) som delas upp. 
+   Om tal mellan 1-9 inte finns i listorna och retunerar en lista med tal som saknas"""
    
    missing_numbers_return = []
 
@@ -130,7 +128,6 @@ sudoku_grid = []
 
 #Läser in en .csv-fil som commandline argument och sparar den som en 2D-lista i 'sudoku_grid'
 sudoku_input()
-
 
 # I en while-loop körs en nästlad for-loop som räknar upp kordinaterna för x och y position i sudokut, från väsnster till höger, uppifrån och ner. 
 # Varje position testats, om det finns en "0" i positionen listats möjliga kandidater för positionen
